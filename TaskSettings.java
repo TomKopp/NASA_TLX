@@ -19,21 +19,18 @@ public class TaskSettings {
     private JTextField TaskNameTextField;
     private JButton TaskSettingsNext;
 
-    private TaskSettings() {
+    public TaskSettings(Main MyMain) {
+        JFrame frame = MyMain.getFrame();
+        frame.setContentPane(this.panel1);
+        frame.pack();
+        frame.setVisible(true);
 
         TaskSettingsNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Evaluation().main();
+                MyMain.changeState(4);
             }
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("TaskSettings");
-        frame.setContentPane(new TaskSettings().panel1);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
 }
