@@ -13,10 +13,19 @@ public class Evaluation {
         frame.pack();
         frame.setVisible(true);
 
-        Evaluation.setValueAt("Demands", 1,1);
-        Evaluation.setValueAt("Rating", 1, 2);
-        Evaluation.setValueAt("Weight", 1,3);
-        Evaluation.setValueAt("Product", 1,4);
+//        String[] headers = {
+//                "Demands",
+//                "Rating",
+//                "Weight",
+//                "Product"
+//        };
+//        Object[][] data = {{"baum", "blubber", 5, 5}};
+//        Evaluation = new JTable(data, headers);
+
+//        Evaluation.setValueAt("Demands", 0,0);
+//        Evaluation.setValueAt("Rating", 0, 1);
+//        Evaluation.setValueAt("Weight", 0,2);
+//        Evaluation.setValueAt("Product", 0,3);
     }
 
 }

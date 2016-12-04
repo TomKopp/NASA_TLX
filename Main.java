@@ -1,18 +1,20 @@
 import javax.swing.*;
+import java.util.Vector;
 
 /**
  * Created by witzbould on 02.12.2016.
  */
 public class Main {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame("NASA TLX");
+    private Vector<Questionnaire> Questionnaires = new Vector<Questionnaire>(2);
 
     private Main() {
-        this.frame = new JFrame("NASA TLX");
-
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        this.frame.pack();
-//        this.frame.setVisible(true);
+
+        if (this.Questionnaires.isEmpty()) {
+            this.Questionnaires.add(new Questionnaire());
+        }
 
         changeState(0);
     }
@@ -27,6 +29,10 @@ public class Main {
     public void changeState(int state) {
         switch (state) {
             case 0:
+                if (this.Questionnaires.lastElement().isFinalized()) {
+                    this.Questionnaires.add(new Questionnaire());
+                }
+
                 new TaskSettings(this);
                 break;
             case 4:
@@ -38,7 +44,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Main blubber = new Main();
+        new Main();
     }
 
     /* Getters */
@@ -46,6 +52,12 @@ public class Main {
         return frame;
     }
 
-    /* Setters */
+    public Vector getQuestionnaires() {
+        return Questionnaires;
+    }
+
+    public Questionnaire getCurrentQuestionnaire() {
+        return Questionnaires.lastElement();
+    }
 
 }

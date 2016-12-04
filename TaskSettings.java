@@ -20,17 +20,28 @@ public class TaskSettings {
     private JButton TaskSettingsNext;
 
     public TaskSettings(Main MyMain) {
+        Questionnaire CurrentQuestionnaire = MyMain.getCurrentQuestionnaire();
         JFrame frame = MyMain.getFrame();
         frame.setContentPane(this.panel1);
         frame.pack();
         frame.setVisible(true);
 
-        TaskSettingsNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MyMain.changeState(4);
-            }
+        // set saved text
+        SubjectIdTextField.setText(CurrentQuestionnaire.getSubjectId());
+        FirstNameTextField.setText(CurrentQuestionnaire.getFirstName());
+        LastNameTextField.setText(CurrentQuestionnaire.getLastName());
+        TaskIdTextField.setText(CurrentQuestionnaire.getTaskId());
+        TaskNameTextField.setText(CurrentQuestionnaire.getTaskName());
+
+        TaskSettingsNext.addActionListener(e -> {
+            // save entered text
+            CurrentQuestionnaire.setSubjectId(SubjectIdTextField.getText());
+            CurrentQuestionnaire.setFirstName(FirstNameTextField.getText());
+            CurrentQuestionnaire.setLastName(LastNameTextField.getText());
+            CurrentQuestionnaire.setTaskId(TaskIdTextField.getText());
+            CurrentQuestionnaire.setTaskName(TaskNameTextField.getText());
+
+            MyMain.changeState(4);
         });
     }
-
 }
