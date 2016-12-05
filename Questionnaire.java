@@ -10,7 +10,6 @@ public class Questionnaire {
     private String LastName = "";
     private String TaskId = "";
     private String TaskName = "";
-
     private Object [][] Data = {
             {"MD",null,null,null},
             {"PD",null,null,null},
@@ -68,6 +67,14 @@ public class Questionnaire {
 
     public void setTaskName(String taskName) {
         TaskName = taskName;
+    }
+
+    public Object[][] getData() {
+        return Data;
+    }
+
+    public void setData(Object[][] data) {
+        this.Data = data;
     }
 
     public void addWeight (String demand, Integer weight){

@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by tkopp on 25.11.2016.
@@ -22,9 +20,6 @@ public class TaskSettings {
     public TaskSettings(Main MyMain) {
         Questionnaire CurrentQuestionnaire = MyMain.getCurrentQuestionnaire();
         JFrame frame = MyMain.getFrame();
-        frame.setContentPane(this.panel1);
-        frame.pack();
-        frame.setVisible(true);
 
         // set saved text
         SubjectIdTextField.setText(CurrentQuestionnaire.getSubjectId());
@@ -32,6 +27,10 @@ public class TaskSettings {
         LastNameTextField.setText(CurrentQuestionnaire.getLastName());
         TaskIdTextField.setText(CurrentQuestionnaire.getTaskId());
         TaskNameTextField.setText(CurrentQuestionnaire.getTaskName());
+
+        frame.setContentPane(this.panel1);
+        frame.pack();
+        frame.setVisible(true);
 
         TaskSettingsNext.addActionListener(e -> {
             // save entered text

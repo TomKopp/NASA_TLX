@@ -16,7 +16,7 @@ public class Main {
             this.Questionnaires.add(new Questionnaire());
         }
 
-        changeState(3);
+        changeState(0);
     }
 
     /**
@@ -35,10 +35,13 @@ public class Main {
 
                 new TaskSettings(this);
                 break;
-            case 3:
+            case 1:
+                // schieberegler
+                break;
+            case 2:
                 new Comparisons(this);
                 break;
-            case 4:
+            case 3:
                 new Evaluation(this);
                 break;
             default:

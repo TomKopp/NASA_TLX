@@ -1,31 +1,46 @@
 import javax.swing.*;
+import java.awt.*;
+import java.util.Vector;
+import java.util.function.Consumer;
 
 /**
  * Created by witzbould on 25.11.2016.
  */
 public class Evaluation {
-    private JTable Evaluation;
-    private JPanel panel1;
+    private JButton SaveBtn = new JButton("Save");
+    // Neue umfrage button
 
     public Evaluation(Main MyMain) {
         JFrame frame = MyMain.getFrame();
-        frame.setContentPane(this.panel1);
+        Vector Questionnaires = MyMain.getQuestionnaires();
+        JPanel Content = new JPanel(new GridLayout(0,1));
+        String[] columnNames = {"Demands", "Rating", "Weight", "Product"};
+
+        Consumer<Questionnaire> buildTable = el -> {
+            // finalize Questionnaire
+            JPanel panel1 = new JPanel();
+            JScrollPane scrollPane = new JScrollPane(new JTable(el.getData(), columnNames));
+            panel1.add(new JLabel(el.getSubjectId()));
+            panel1.add(new JLabel(el.getFirstName()));
+            panel1.add(new JLabel(el.getLastName()));
+            panel1.add(new JLabel(el.getTaskId()));
+            panel1.add(new JLabel(el.getTaskName()));
+            panel1.add(scrollPane);
+
+            Content.add(panel1);
+            Content.add(new JSeparator());
+        };
+
+        Questionnaires.forEach(buildTable);
+        Content.add(SaveBtn);
+
+        frame.setContentPane(Content);
         frame.pack();
         frame.setVisible(true);
 
-//        String[] headers = {
-//                "Demands",
-//                "Rating",
-//                "Weight",
-//                "Product"
-//        };
-//        Object[][] data = {{"baum", "blubber", 5, 5}};
-//        Evaluation = new JTable(data, headers);
-
-//        Evaluation.setValueAt("Demands", 0,0);
-//        Evaluation.setValueAt("Rating", 0, 1);
-//        Evaluation.setValueAt("Weight", 0,2);
-//        Evaluation.setValueAt("Product", 0,3);
+        SaveBtn.addActionListener(e -> {
+            // do save
+        });
     }
 
 }
