@@ -36,7 +36,7 @@ public class Main {
                 new TaskSettings(this);
                 break;
             case 1:
-                // schieberegler
+                new MainGUI(this);
                 break;
             case 2:
                 new Comparisons(this);

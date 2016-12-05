@@ -84,4 +84,11 @@ public class Questionnaire {
             }
         }
     }
+    public void addRaiting (String demand, Integer raiting){
+        for (int i =0; i<= 5; i++){
+            if (Data[i][0].equals(demand)){
+                Data[i][1] = raiting;
+            }
+        }
+    }
 }

@@ -140,7 +140,7 @@ public class Comparisons {
                     for(String key : winnerMap.keySet()){
                         CurrentQuestionnaire.addWeight(key, winnerMap.get(key));
                     }
-                    MyMain.changeState(4);
+                    MyMain.changeState(3);
                 }
             }
         });
