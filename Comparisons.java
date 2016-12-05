@@ -28,7 +28,8 @@ public class Comparisons {
     private HashMap<Integer,String> numberTODemand;
     private ArrayList<String> leftList;
     private ArrayList<String> rightList;
-    private HashMap<HashMap<Integer,Integer>, Integer> comparisonMap;
+    private HashMap<String, Integer> winnerMap;
+
     private int count = 1;
     private String pd = "PD";
     private String td = "TD";
@@ -37,11 +38,17 @@ public class Comparisons {
     private String fr = "FR";
     private String ef = "EF";
 
-    public Comparisons() {
+    public Comparisons(Main MyMain) {
+        Questionnaire CurrentQuestionnaire = MyMain.getCurrentQuestionnaire();
+        JFrame frame = MyMain.getFrame();
+        frame.setContentPane(this.comparisonPanel);
+        frame.pack();
+        frame.setVisible(true);
+
         this.numberTODemand = new HashMap<Integer,String>();
-        this.comparisonMap = new HashMap<HashMap<Integer,Integer>, Integer>();
         this.leftList = new ArrayList<String>();
         this.rightList = new ArrayList<String>();
+        this.winnerMap = new HashMap<String, Integer>();
         numberTODemand.put(1,md);
         numberTODemand.put(2,pd);
         numberTODemand.put(3,td);
@@ -92,11 +99,14 @@ public class Comparisons {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (count <=14) {
-                    int clicked = getKey(button1.getText(), numberTODemand);
-                    int unclicked = getKey(button2.getText(), numberTODemand);
-                    HashMap<Integer, Integer> components = new HashMap<Integer, Integer>();
-                    components.put(clicked, unclicked);
-                    comparisonMap.put(components, clicked);
+
+                    String clicked = button1.getText();
+                    if (winnerMap.containsKey(clicked)){
+                        winnerMap.put(clicked, winnerMap.get(clicked) + 1);
+                    }
+                    else{
+                        winnerMap.put(clicked, 1);
+                    }
 
                     button1.setText(leftList.get(count));
                     button2.setText(rightList.get(count));
@@ -109,11 +119,13 @@ public class Comparisons {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (count <=14) {
-                    int clicked = getKey(button2.getText(), numberTODemand);
-                    int unclicked = getKey(button1.getText(), numberTODemand);
-                    HashMap<Integer, Integer> components = new HashMap<Integer, Integer>();
-                    components.put(clicked, unclicked);
-                    comparisonMap.put(components, clicked);
+                    String clicked = button2.getText();
+                    if (winnerMap.containsKey(clicked)){
+                        winnerMap.put(clicked, winnerMap.get(clicked) + 1);
+                    }
+                    else{
+                        winnerMap.put(clicked, 1);
+                    }
 
                     button1.setText(leftList.get(count));
                     button2.setText(rightList.get(count));
@@ -124,33 +136,18 @@ public class Comparisons {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (count ==14){
+                if (count ==15){
+                    for(String key : winnerMap.keySet()){
+                        CurrentQuestionnaire.addWeight(key, winnerMap.get(key));
+                    }
+                    MyMain.changeState(4);
                 }
             }
         });
 
     }
 
-    public HashMap<HashMap<Integer,Integer>, Integer> getResults(){
-        return this.comparisonMap;
-    }
 
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Comparisons");
-        frame.setContentPane(new Comparisons().comparisonPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    public Integer getKey(String value, HashMap<Integer, String> map){
-        for(Integer key : map.keySet()){
-            if(map.get(key).equals(value)){
-                return key; //return the first found
-            }
-        }
-        return null;
-    }
     /*public String getKey(String value, HashMap<String, String> map){
         for(String key : map.keySet()){
             if(map.get(key).equals(value)){

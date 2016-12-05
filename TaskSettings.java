@@ -41,7 +41,7 @@ public class TaskSettings {
             CurrentQuestionnaire.setTaskId(TaskIdTextField.getText());
             CurrentQuestionnaire.setTaskName(TaskNameTextField.getText());
 
-            MyMain.changeState(4);
+            MyMain.changeState(3);
         });
     }
 }
