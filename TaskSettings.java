@@ -40,7 +40,7 @@ public class TaskSettings {
             CurrentQuestionnaire.setTaskId(TaskIdTextField.getText());
             CurrentQuestionnaire.setTaskName(TaskNameTextField.getText());
 
-            MyMain.changeState(3);
+            MyMain.changeState(1);
         });
     }
 }

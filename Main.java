@@ -40,9 +40,13 @@ public class Main {
                 break;
             case 2:
                 new Comparisons(this);
-                break;
             case 3:
-                new Evaluation(this);
+                try {
+                    this.getCurrentQuestionnaire().csv_method();
+                }
+                catch (Exception ex){
+
+                }
                 break;
             default:
                 // do nothing
