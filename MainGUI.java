@@ -54,7 +54,7 @@ public class MainGUI {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 for (String key: DemandsAndRatings.keySet()) {
-                    CurrentQuestionnaire.addRaiting(key, DemandsAndRatings.get(key));
+                    CurrentQuestionnaire.addRating(key, DemandsAndRatings.get(key));
                 }
                 MyMain.changeState(2);
             }}

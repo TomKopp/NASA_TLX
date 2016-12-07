@@ -7,7 +7,7 @@ import java.util.Vector;
 public class Main {
 
     private JFrame frame = new JFrame("NASA TLX");
-    private Vector<Questionnaire> Questionnaires = new Vector<Questionnaire>(2);
+    private Vector<Questionnaire> Questionnaires = new Vector<>(2);
 
     private Main() {
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -21,8 +21,6 @@ public class Main {
 
     /**
      * 0, 1, 2 ... states for comparison, evaluation etc
-     * 10, 11, ... states for MD-PD, PD-TD, TD-OP comparisons
-     * 100 ... state for program control (loading/save files, exiting program...)
      *
      * @param state
      */
@@ -41,12 +39,7 @@ public class Main {
             case 2:
                 new Comparisons(this);
             case 3:
-                try {
-                    this.getCurrentQuestionnaire().csv_method();
-                }
-                catch (Exception ex){
-
-                }
+                new Evaluation(this);
                 break;
             default:
                 // do nothing
@@ -62,7 +55,7 @@ public class Main {
         return frame;
     }
 
-    public Vector getQuestionnaires() {
+    public Vector<Questionnaire> getQuestionnaires() {
         return Questionnaires;
     }
 
