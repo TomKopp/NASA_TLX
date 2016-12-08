@@ -121,9 +121,13 @@ public class Questionnaire {
         }
     }
 
+    public String getFilename() {
+        return TaskId + "_" + SubjectId + "_results.csv";
+    }
+
     public void csv_method() throws Exception {
         Path p3 = Paths.get(System.getProperty("user.dir"));
-        String csvFile = p3.resolve(TaskId + "_" + SubjectId + "_results.csv").toString();
+        String csvFile = p3.resolve(getFilename()).toString();
         FileWriter writer = new FileWriter(csvFile);
 
         CSVUtils.writeLine(writer, Arrays.asList("TaskID", "TaskName", "SubjectId", "LastName", "FirstName"));

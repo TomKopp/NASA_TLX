@@ -33,7 +33,7 @@ public class Evaluation {
             Content.add(new JSeparator());
         });
 
-        JButton btnNew = new JButton("New");
+        JButton btnNew = new JButton("New questionnaire");
         JButton btnSave = new JButton("Save");
         JPanel panel2 = new JPanel();
 
@@ -55,14 +55,14 @@ public class Evaluation {
                 try {
                     el.csv_method();
                     JOptionPane.showMessageDialog(frame,
-                            "The file was successfully saved alongside the jar.",
+                            "The file \"" + el.getFilename() + "\" was successfully saved alongside the jar.",
                             "Successfully saved",
                             JOptionPane.PLAIN_MESSAGE
                     );
                 }
                 catch (Exception ex) {
                     JOptionPane.showConfirmDialog(frame,
-                            "There occurred an error while saving the file.",
+                            "There occurred an error while saving the file \"" + el.getFilename() + "\".",
                             "Error while saving!",
                             JOptionPane.ERROR_MESSAGE,
                             JOptionPane.OK_OPTION
