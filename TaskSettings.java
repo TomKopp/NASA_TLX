@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by tkopp on 25.11.2016.
@@ -33,6 +34,22 @@ public class TaskSettings {
         frame.setVisible(true);
 
         TaskSettingsNext.addActionListener(e -> {
+            if(SubjectIdTextField.getText().trim().equals("")) {
+                SubjectId.setForeground(Color.red);
+            }
+            if(TaskIdTextField.getText().trim().equals("")) {
+                TaskId.setForeground(Color.red);
+            }
+            if (SubjectIdTextField.getText().trim().equals("")
+                    ||TaskIdTextField.getText().trim().equals("")) {
+                JOptionPane.showConfirmDialog(frame,
+                        "Please fill out at least:\n" + SubjectId.getText() + "\n" + TaskId.getText(),
+                        "Missing fields",
+                        JOptionPane.PLAIN_MESSAGE,
+                        JOptionPane.OK_OPTION
+                );
+                return;
+            }
             // save entered text
             CurrentQuestionnaire.setSubjectId(SubjectIdTextField.getText());
             CurrentQuestionnaire.setFirstName(FirstNameTextField.getText());

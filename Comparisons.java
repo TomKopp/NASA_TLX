@@ -143,15 +143,4 @@ public class Comparisons {
         });
 
     }
-
-
-    /*public String getKey(String value, HashMap<String, String> map){
-        for(String key : map.keySet()){
-            if(map.get(key).equals(value)){
-                return key; //return the first found
-            }
-        }
-        return null;
-    }*/
-
 }
